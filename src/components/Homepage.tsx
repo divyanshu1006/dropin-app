@@ -337,7 +337,7 @@ export default function Homepage({ onCreateRoom, onJoinRoom, isLoading }: Homepa
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center">
+    <div className="min-h-dvh bg-slate-50 flex flex-col items-center">
       
       {/* HEADER NAVBAR (Translucent Apple-inspired Sticky Top bar with modern interactive indicator and motion enhancements) */}
       <motion.header 

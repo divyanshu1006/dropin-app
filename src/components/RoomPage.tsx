@@ -489,7 +489,7 @@ export default function RoomPage({ roomId, myGuestId, myNickname, onExit }: Room
   // Render Loader if state not ready yet
   if (!room && !errorMessage) {
     return (
-      <div className="min-h-screen bg-[#FBFBFB] flex flex-col items-center justify-center p-4">
+      <div className="min-h-dvh bg-[#FBFBFB] flex flex-col items-center justify-center p-4">
         <div className="text-center space-y-4 max-w-sm">
           <div className="animate-spin rounded-full h-12 w-12 border-4 border-orange-500 border-t-transparent mx-auto"></div>
           <h3 className="font-sans font-bold text-slate-800 text-lg">Synchronizing DropIn</h3>
@@ -504,7 +504,7 @@ export default function RoomPage({ roomId, myGuestId, myNickname, onExit }: Room
   // Render error screen (banned or room expired)
   if (errorMessage) {
     return (
-      <div className="min-h-screen bg-[#FBFBFB] flex flex-col items-center justify-center p-4">
+      <div className="min-h-dvh bg-[#FBFBFB] flex flex-col items-center justify-center p-4">
         <div className="bg-white border border-slate-100 shadow-sm rounded-3xl p-6 md:p-8 max-w-md w-full text-center space-y-6">
           <div className="h-14 w-14 bg-rose-50 rounded-full flex items-center justify-center mx-auto text-rose-500">
             <AlertTriangle className="h-7 w-7" />
@@ -527,7 +527,7 @@ export default function RoomPage({ roomId, myGuestId, myNickname, onExit }: Room
   }
 
   return (
-    <div className="min-h-screen bg-[#FBFBFB] flex flex-col h-screen overflow-hidden">
+    <div className="min-h-dvh bg-[#FBFBFB] flex flex-col h-dvh overflow-hidden">
       
       {/* HEADER BAR */}
       <header className="bg-white border-b border-slate-100 px-6 py-4 shrink-0 flex items-center justify-between" id="room-header">
