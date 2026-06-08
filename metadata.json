@@ -1,0 +1,6 @@
+{
+  "name": "DropIn",
+  "description": "Instant, temporary micro-chat rooms for real-time coordination without accounts or permanent clutter.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
