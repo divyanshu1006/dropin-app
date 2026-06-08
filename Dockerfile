@@ -23,7 +23,7 @@ ENV NODE_ENV=production
 
 # Copy built files and dependencies
 COPY --from=build /app/dist ./dist
-COPY --from=build /app/package.json package-lock.json* ./
+COPY --from=build /app/package.json /app/package-lock.json* ./
 RUN npm ci --omit=dev
 
 # Expose port (can be overridden by process.env.PORT)
