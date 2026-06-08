@@ -272,15 +272,6 @@ export default function Homepage({ onCreateRoom, onJoinRoom, isLoading }: Homepa
       participantLimit: participantLimit ? parseInt(participantLimit, 10) : undefined,
     };
 
-    if (!isSignedUp) {
-      setPendingAction({
-        type: 'create_room',
-        data: roomPayload,
-      });
-      setShowSignupModal(true);
-      return;
-    }
-
     onCreateRoom(roomPayload);
   };
 
