@@ -73,6 +73,14 @@ html, body {
   50% { opacity: 0.7; transform: scale(1.05); }
 }
 
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Timer monospace styling */
 .timer-mono {
   font-family: var(--font-mono);
