@@ -40,6 +40,9 @@ const typingUsers: { [roomId: string]: { [guestId: string]: { nickname: string; 
 // Parse JSON inputs
 app.use(express.json());
 
+// Trust proxy for rate limiting behind Render/Heroku load balancers
+app.set('trust proxy', 1);
+
 // Security Middlewares
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors());
@@ -51,6 +54,16 @@ const apiLimiter = rateLimit({
   message: { error: 'Too many requests from this IP, please try again after 15 minutes.' }
 });
 app.use('/api/', apiLimiter);
+
+// Specific Rate Limiter for Room Creation (3 per day per user/IP)
+const roomCreationLimiter = rateLimit({
+  windowMs: 24 * 60 * 60 * 1000, // 24 hours
+  max: 3,
+  keyGenerator: (req) => req.body.createdBy || req.ip,
+  message: { error: 'You have reached the limit of creating 3 rooms per day. Please try again tomorrow.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // Profanity list for basic moderation
 const PROFANITY_WORDS = [
@@ -96,7 +109,7 @@ setInterval(pruneExpiredRooms, 15000);
 
 // API Endpoints
 // Create Room
-app.post('/api/rooms', (req, res) => {
+app.post('/api/rooms', roomCreationLimiter, (req, res) => {
   const { title, durationMinutes, location, participantLimit, createdBy, description } = req.body;
   
   if (!title || typeof title !== 'string' || title.trim() === '') {
