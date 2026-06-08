@@ -335,14 +335,14 @@ export default function Homepage({ onCreateRoom, onJoinRoom, isLoading }: Homepa
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-        className="sticky top-0 w-full bg-white/75 backdrop-blur-xl border-b border-slate-200/40 px-6 md:px-8 py-3.5 flex items-center justify-between z-40 transition-all duration-350" 
+        className="sticky top-0 w-full bg-white/75 backdrop-blur-xl border-b border-slate-200/40 px-3 sm:px-6 md:px-8 py-3 flex items-center justify-between z-40 transition-all duration-350" 
         id="app-header"
       >
-        <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
+        <div className="w-full max-w-7xl mx-auto flex items-center justify-between gap-1 sm:gap-2">
           
           {/* Logo element with interactive spring bounce and active indicator bubble */}
           <motion.div 
-            className="flex items-center space-x-3 cursor-pointer select-none group"
+            className="flex items-center space-x-2 sm:space-x-3 cursor-pointer select-none group shrink-0"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             whileHover={{ scale: 1.015 }}
             whileTap={{ scale: 0.985 }}
@@ -359,7 +359,7 @@ export default function Homepage({ onCreateRoom, onJoinRoom, isLoading }: Homepa
               <span className="font-sans font-extrabold text-base tracking-tight text-slate-900 group-hover:text-orange-550 transition-colors duration-250 leading-none">DropIn</span>
               <span className="text-[9px] font-mono font-bold text-orange-500 flex items-center space-x-1 mt-0.5 select-none tracking-wide">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse inline-block shrink-0"></span>
-                <span>Active Coordinator</span>
+                <span className="hidden sm:inline">Active Coordinator</span>
               </span>
             </div>
           </motion.div>
@@ -395,7 +395,7 @@ export default function Homepage({ onCreateRoom, onJoinRoom, isLoading }: Homepa
           </nav>
 
           {/* Identity & Actions Container */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-1.5 sm:space-x-3 shrink-0">
             {isSignedUp && (
               <div className="relative" id="my-rooms-dropdown-container">
                 <button
@@ -409,7 +409,7 @@ export default function Homepage({ onCreateRoom, onJoinRoom, isLoading }: Homepa
                     setRecentRooms(getRecentRooms());
                     setShowMyRoomsDropdown(!showMyRoomsDropdown);
                   }}
-                  className="px-3 py-1.5 bg-slate-100/70 hover:bg-slate-200/90 text-slate-800 rounded-lg flex items-center space-x-1.5 font-sans font-bold text-xs cursor-pointer transition-all active:scale-95 shadow-3xs border border-slate-200/30"
+                  className="px-2 sm:px-3 py-1.5 bg-slate-100/70 hover:bg-slate-200/90 text-slate-800 rounded-lg flex items-center space-x-1 sm:space-x-1.5 font-sans font-bold text-xs cursor-pointer transition-all active:scale-95 shadow-3xs border border-slate-200/30"
                   aria-label="Display my recent coordination spaces"
                 >
                   <History className="h-3.5 w-3.5 text-orange-500 animate-[spin_4s_linear_infinite]" />
@@ -488,11 +488,11 @@ export default function Homepage({ onCreateRoom, onJoinRoom, isLoading }: Homepa
             )}
 
             {isSignedUp ? (
-              <div className="flex items-center space-x-2 bg-slate-100/60 border border-slate-200/40 rounded-full px-3 py-1 pr-1.5 select-none" id="user-profile-badge">
-                <div className="h-5.5 w-5.5 rounded-full bg-slate-900 border border-slate-850 text-white flex items-center justify-center font-bold text-[10px] font-sans">
+              <div className="flex items-center space-x-1.5 sm:space-x-2 bg-slate-100/60 border border-slate-200/40 rounded-full px-2 sm:px-3 py-1 sm:pr-1.5 select-none" id="user-profile-badge">
+                <div className="h-5.5 w-5.5 rounded-full bg-slate-900 border border-slate-850 text-white flex items-center justify-center font-bold text-[10px] font-sans shrink-0">
                   {profileName.trim().charAt(0).toUpperCase()}
                 </div>
-                <span className="text-[11px] font-bold text-slate-700 truncate max-w-[90px] leading-none" title={profileEmail}>
+                <span className="hidden sm:inline text-[11px] font-bold text-slate-700 truncate max-w-[90px] leading-none" title={profileEmail}>
                   {profileName}
                 </span>
                 <button
@@ -512,19 +512,20 @@ export default function Homepage({ onCreateRoom, onJoinRoom, isLoading }: Homepa
                   setPendingAction(null);
                   setShowSignupModal(true);
                 }}
-                className="px-3.5 py-1.5 border border-slate-250/30 hover:border-slate-350/40 hover:bg-slate-50 transition-all font-sans font-bold text-xs text-slate-600 rounded-lg cursor-pointer active:scale-95 shadow-3xs"
+                className="px-2.5 sm:px-3.5 py-1.5 border border-slate-250/30 hover:border-slate-350/40 hover:bg-slate-50 transition-all font-sans font-bold text-xs text-slate-600 rounded-lg cursor-pointer active:scale-95 shadow-3xs whitespace-nowrap"
               >
-                Sign Up
+                <span className="hidden sm:inline">Sign Up</span>
+                <span className="sm:hidden">Join</span>
               </button>
             )}
 
             <button
               type="button"
               onClick={() => scrollToWorkspace('create')}
-              className="relative overflow-hidden px-4 py-1.5 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 font-sans font-semibold text-xs text-white rounded-lg shadow-sm hover:shadow-orange-100 transition-all cursor-pointer active:scale-95 flex items-center space-x-1"
+              className="relative overflow-hidden px-3 sm:px-4 py-1.5 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 font-sans font-semibold text-xs text-white rounded-lg shadow-sm hover:shadow-orange-100 transition-all cursor-pointer active:scale-95 flex items-center space-x-1 whitespace-nowrap"
             >
-              <Sparkles className="h-3.5 w-3.5 text-orange-250 animate-pulse" />
-              <span>Start Room</span>
+              <Sparkles className="h-3.5 w-3.5 text-orange-250 animate-pulse hidden sm:block" />
+              <span>Start <span className="hidden sm:inline">Room</span></span>
             </button>
           </div>
         </div>
